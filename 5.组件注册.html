@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<book-item name="西游记"></book-item>
+			<author name="吴承恩"></author>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			Vue.component("book-item",{
+				template:"<div>《{{name}}》</div>",
+				data:function(){
+					return {};
+				},
+				props:["name"]
+			})
+			
+			var app = new Vue({
+				el: '#app',
+				data:{},
+				components:{
+					"author":{
+						template:"<div>{{name}}</div>",
+						data:function  () {
+							return {};
+						},
+						props:["name"]
+					}
+					
+				}
+				
+			});
+			
+			
+			
+		</script>
+	</body>
+</html>

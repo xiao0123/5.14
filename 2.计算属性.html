@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<p>a:<input type="number" name="" id="" value="" v-model="a" /></p>
+			<p>b:<input type="number" name="" id="" value="" v-model="b" /></p>
+			<p>sum:{{sum}}</p>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					a:0,
+					b:0
+				},
+				methods:{
+					
+				},
+				computed:{
+					sum:function(){
+						return (this.a-0)+(this.b-0)
+					}
+					
+				}
+			})
+			
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

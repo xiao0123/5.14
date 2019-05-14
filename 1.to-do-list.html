@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.fin{
+				text-decoration: line-through;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" name="" id="" value="" v-model="msg" @keyup.enter="adda" />
+			<button @click="adda">增加</button>
+			<ul>
+				<li v-for="(item,index) in todo" v-bind:key="index" @click="deletea(index)" v-bind:class="item.finish?'fin':''">{{item.todo}}</li>
+			</ul>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					msg:"",
+					todo:[]
+				},
+				methods:{
+					adda:function(e){
+						console.log(e)
+						this.todo.push({
+							todo:this.msg,
+							finish:false
+						});
+						this.msg=""
+					},
+					deletea:function(index){
+						console.log(index)
+						this.todo[index].finish=true;
+					}
+				}
+			})
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

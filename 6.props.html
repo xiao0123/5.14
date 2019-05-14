@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<book v-for="(item,index) in books" v-bind:key="index" v-bind:title="item.title" v-bind:author="item.author" v-bind:price="item.price"></book>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					books:[{
+						title:"西游记",
+						author:"吴承恩",
+						price:12.34
+					},{
+						title:"水浒传",
+						author:"施耐庵",
+						price:12.34
+					},{
+						title:"红楼梦",
+						author:"曹雪芹",
+						price:12.34
+					}]
+				}
+			});
+			
+			
+			Vue.component("book",{
+				template:"<div>{{title}}{{author}}{{price}}</div>",
+				data:function(){
+					return {};
+				},
+				props:["title","author","price"]
+				
+				
+			})
+		</script>
+	</body>
+</html>

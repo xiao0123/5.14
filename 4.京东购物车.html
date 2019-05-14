@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(item,index) in products" v-bind:key="index">
+					<input type="checkbox" v-model="item.select" @change="select(index,item.select)" />
+					{{item.title}}--{{item.price}}元--
+					<!--赋值运算，item.count--，则会先运算item.count，不会执行减减-->
+					<button @click="item.count<1?1:--item.count">-</button>
+					{{item.count}}
+					<button @click="item.count++" >+</button>
+				</li>
+			</ul>
+			<input type="checkbox" v-model="all" @change="selectAll" />
+			<p>总数量：{{total}} 总价：{{sum}}</p>
+			<p>{{selected}}</p>
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app=new Vue({
+				el:"#app",
+				data:{
+					i:0,
+					products:[{
+						title:"三只松鼠",
+						price:"29",
+						count:0,
+						select:false
+					},{
+						title:"不二家糖",
+						price:"12",
+						count:0,
+						select:false
+					},{
+						title:"良品铺子",
+						price:"16",
+						count:0,
+						select:false
+					}],
+					selected:[],
+					all:false
+				},
+				methods:{
+					select:function(index,boolean){
+						if (boolean) {
+							this.selected.push(index);
+						} else{
+							var i=0
+							this.selected.forEach(function(item,inx){
+								if(item==index){
+									i=inx
+								}
+								
+							})
+							this.selected.splice(i,1)
+						}
+					},
+					selectAll:function(index){
+						if (this.all) {
+							var tmp=[];
+							this.products.forEach(function(item,index){
+								tmp.push(index);
+								item.select=true;
+							})
+							this.selected=tmp;
+						} else{
+							this.selected=[];
+							this.products.forEach(function(item,index){
+								item.select=false;
+							})
+						}
+					}
+				},
+				computed:{
+					total:function(){
+						var n=0
+						this.products.forEach(function(item){
+							if(item.select){
+								n=n+item.count;
+							}
+						})
+						return n;
+					},
+					sum:function(){
+						var n=0;
+						this.products.forEach(function(item){
+							if(item.select){
+								n+=item.price*item.count;
+							}
+						})
+						return n;
+					}
+				},
+				watch:{
+					selected:function(val){
+						if (val.length==this.products.length) {
+							this.all=true;
+						} else{
+							this.all=false;
+						}
+					}
+				}
+			})
+			
+			
+			
+		</script>
+	</body>
+</html>
